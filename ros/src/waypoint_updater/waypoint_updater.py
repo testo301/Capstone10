@@ -114,7 +114,7 @@ class WaypointUpdater(object):
         for i,wp in enumerate(waypoints):
             p=Waypoint()
             p.pose=wp.pose
-            stop_idx=max(self.stopline_wp_idx-closest_idx-3,0) # 4 is a distance buffer to make the car stop behind the line
+            stop_idx=max(self.stopline_wp_idx-closest_idx-2,0) # 4 is a distance buffer to make the car stop behind the line
             dist = self.distance(waypoints,i,stop_idx)
             vel=math.sqrt(2*MAX_DECEL*dist)
             if vel<1.:
@@ -141,7 +141,7 @@ class WaypointUpdater(object):
         for i,wp in enumerate(waypoints):
             p=Waypoint()
             p.pose=wp.pose
-            #stop_idx=max(self.stopline_wp_idx-closest_idx-3,0) # 4 is a distance buffer to make the car stop behind the line
+            #stop_idx=max(self.stopline_wp_idx-closest_idx-3,0) # is a distance buffer to make the car stop behind the line
             #dist = self.distance(waypoints,i,stop_idx)
             #vel=math.sqrt(4*MAX_DECEL*dist)
             #if vel<1.:
@@ -149,7 +149,6 @@ class WaypointUpdater(object):
             #p.twist.twist.linear.x=min(vel,wp.twist.twist.linear.x)
             #rospy.logerr(">>>> Speed :%s",wp.twist.twist.linear.x)
             p.twist.twist.linear.x=2.0*wp.twist.twist.linear.x
-            #p.twist.twist.linear.x=60
             temp.append(p)
         return temp      
     def initial_stop(self,waypoints,closest_idx):
@@ -157,9 +156,9 @@ class WaypointUpdater(object):
         for i,wp in enumerate(waypoints):
             p=Waypoint()
             p.pose=wp.pose
-            stop_idx=max(self.stopline_wp_idx-closest_idx-4,0) # 4 is a distance buffer to make the car stop behind the line
-            dist = self.distance(waypoints,i,stop_idx)
-            vel=math.sqrt(2*MAX_DECEL*dist)
+            #stop_idx=max(self.stopline_wp_idx-closest_idx-4,0)
+            #dist = self.distance(waypoints,i,stop_idx)
+            #vel=math.sqrt(2*MAX_DECEL*dist)
             p.twist.twist.linear.x=0.0
             temp.append(p)
         return temp
