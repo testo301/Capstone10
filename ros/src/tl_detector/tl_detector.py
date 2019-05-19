@@ -172,7 +172,8 @@ class TLDetector(object):
             elif self.state_count >= STATE_COUNT_THRESHOLD:
                 self.last_state = self.state
                 # Conservative approach - slowing down on both YELLOW and RED lights
-                if state == TrafficLight.YELLOW or state == TrafficLight.RED or self.load_status == False:
+                #if state == TrafficLight.YELLOW or state == TrafficLight.RED or self.load_status == False:
+                if state == TrafficLight.RED or self.load_status == False:
                 	light_wp = light_wp
                 elif state == TrafficLight.GREEN and ( self.light_waypoint_id_temp  - self.closest_id_temp < 20) and ( self.light_waypoint_id_temp  - self.closest_id_temp >=(-5)):
                 	light_wp = -3
